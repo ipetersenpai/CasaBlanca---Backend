@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const authRoutes = require("./models/routes/auth");
+const bookingRoutes = require("./models/routes/booking"); // Add this line
 
 const app = express();
 const PORT = process.env.PORT || 3522;
@@ -20,5 +21,6 @@ mongoose
 
 // Include auth routes
 app.use("/api/auth", authRoutes);
+app.use("/api/booking", bookingRoutes);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
