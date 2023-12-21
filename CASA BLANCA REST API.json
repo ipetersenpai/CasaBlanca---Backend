@@ -185,6 +185,40 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Remove User/Employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3522/api/auth/deactivate/:userId",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3522",
+					"path": [
+						"api",
+						"auth",
+						"deactivate",
+						":userId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "6584863c35b1c83e0b164945"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
