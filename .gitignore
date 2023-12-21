@@ -1,0 +1,39 @@
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables file
+.env
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# JetBrains IDEs
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# Node.js generated files
+node_modules/
+npm-debug.log*
+
+# yarn
+yarn-debug.log*
+yarn-error.log*
+
+# npm
+npm-debug.log*
