@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "83891ae2-c144-436a-832f-26bf1dfd6d5c",
+		"name": "CASA BLANCA REST API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24785765",
+		"_collection_link": "https://capstone-uccp-cdo.postman.co/workspace/UCCP-CDO~5ed0efe2-e986-4c6b-b060-01e339584735/collection/24785765-83891ae2-c144-436a-832f-26bf1dfd6d5c?action=share&source=collection_link&creator=24785765"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullname\": \"John Doe\",\n  \"username\": \"john_doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"your_password\",\n  \"employeeId\": 12345,\n  \"contactNo\": \"1234567890\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3522/api/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"identifier\": \"user@example.com\",\n  \"password\": \"your_password\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3522/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "Booking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullname\": \"james tomas\",\n  \"email\": \"james.tomas@example.com\",\n  \"contactNo\": \"09914123412\",\n  \"reservationDate\": \"2023-12-31T12:00:00\",\n  \"roomType\": 1,\n  \"table\": \"Table 2\",\n  \"numberOfPersons\": 4,\n  \"purpose\": \"dinner\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3522/api/booking/submit"
+			},
+			"response": []
+		},
+		{
+			"name": "Booking List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3522/api/booking/pending"
+			},
+			"response": []
+		},
+		{
+			"name": "Employee List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": "http://localhost:3522/api/auth/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Booking",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3522/api/booking/approve/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3522",
+					"path": [
+						"api",
+						"booking",
+						"approve",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "65847375b68621455d5db3de"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User/Employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullname\": \"Updated Fullname\",\n  \"email\": \"updated@example.com\",\n  \"password\": \"newpassword\",\n  \"employeeId\": 12345,\n  \"contactNo\": \"9876543210\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3522/api/auth/update/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3522",
+					"path": [
+						"api",
+						"auth",
+						"update",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "65847e88b979bcf265d91742"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -7,10 +7,15 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+    sparse: true,
+  },
   email: {
     type: String,
     required: true,
-    unique: true,
+    sparse: true,
   },
   password: {
     type: String,
@@ -20,6 +25,10 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     required: true,
     unique: true,
+  },
+  contactNo: {
+    type: String,
+    required: true,
   },
   user_access: {
     type: String,

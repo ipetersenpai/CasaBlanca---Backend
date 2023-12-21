@@ -7,7 +7,8 @@ const jwt = require("jsonwebtoken");
 
 // Signup route
 router.post("/signup", async (req, res) => {
-  const { fullname, email, password, employeeId } = req.body;
+  const { fullname, username, email, password, employeeId, contactNo } =
+    req.body;
 
   try {
     // Check if the user already exists
@@ -17,7 +18,14 @@ router.post("/signup", async (req, res) => {
     }
 
     // Create a new user
-    user = new User({ fullname, email, password, employeeId });
+    user = new User({
+      fullname,
+      username,
+      email,
+      password,
+      employeeId,
+      contactNo,
+    });
 
     // Save the user to the database
     await user.save();
@@ -31,11 +39,14 @@ router.post("/signup", async (req, res) => {
 
 // Login route
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { identifier, password } = req.body;
 
   try {
-    // Check if the user exists
-    const user = await User.findOne({ email });
+    // Check if the user exists by email or username
+    const user = await User.findOne({
+      $or: [{ email: identifier }, { username: identifier }],
+    });
+
     if (!user) {
       return res.status(400).json({ msg: "Invalid credentials" });
     }
@@ -52,6 +63,8 @@ router.post("/login", async (req, res) => {
         id: user.id,
         fullname: user.fullname,
         email: user.email,
+        contactNo: user.contactNo,
+        username: user.username,
         employeeId: user.employeeId,
         user_access: user.user_access,
       },
@@ -64,6 +77,47 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
+  }
+});
+
+// Get all employees route
+router.get("/employees", async (req, res) => {
+  try {
+    const employees = await User.find({ user_access: "employee" });
+    res.status(200).json(employees);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server Error" });
+  }
+});
+
+// Update user data route
+router.put("/update/:id", async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    // Check if the user exists
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    // Update user data (excluding user_access)
+    const { fullname, email, password, employeeId, contactNo } = req.body;
+
+    user.fullname = fullname || user.fullname;
+    user.email = email || user.email;
+    user.password = password ? await bcrypt.hash(password, 10) : user.password;
+    user.employeeId = employeeId || user.employeeId;
+    user.contactNo = contactNo || user.contactNo;
+
+    // Save the updated user to the database
+    await user.save();
+
+    res.status(200).json({ msg: "User updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server Error" });
   }
 });
 
