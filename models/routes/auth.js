@@ -83,7 +83,10 @@ router.post("/login", async (req, res) => {
 // Get all employees route
 router.get("/employees", async (req, res) => {
   try {
-    const employees = await User.find({ user_access: "employee" });
+    const employees = await User.find({
+      user_access: "employee",
+      active_status: true,
+    });
     res.status(200).json(employees);
   } catch (error) {
     console.error(error);
@@ -115,6 +118,31 @@ router.put("/update/:id", async (req, res) => {
     await user.save();
 
     res.status(200).json({ msg: "User updated successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Server Error" });
+  }
+});
+
+// Update active_status route
+router.put("/deactivate/:userId", async (req, res) => {
+  const userId = req.params.userId;
+
+  try {
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    // Update active_status to false
+    user.active_status = false;
+
+    // Save the updated user to the database
+    await user.save();
+
+    res.status(200).json({ msg: "User deactivated successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ msg: "Server Error" });

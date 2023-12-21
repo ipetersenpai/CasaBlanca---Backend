@@ -34,6 +34,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "employee", // Set default value to "employee"
   },
+  active_status: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 // Hash the password before saving it to the database
