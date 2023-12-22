@@ -40,10 +40,18 @@ router.post("/submit", async (req, res) => {
   }
 });
 
-// Get all bookings with status "approve: false" route
-router.get("/pending", async (req, res) => {
+// Get pending bookings with optional roomType filter
+router.get("/pending/:roomType?", async (req, res) => {
   try {
-    const pendingBookings = await Booking.find({ approve: false });
+    const { roomType } = req.params;
+    let query = { approve: false };
+
+    // If roomType is provided, add it to the query
+    if (roomType) {
+      query.roomType = roomType;
+    }
+
+    const pendingBookings = await Booking.find(query);
     res.status(200).json(pendingBookings);
   } catch (error) {
     console.error(error);
