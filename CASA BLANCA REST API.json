@@ -20,7 +20,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"fullname\": \"John Doe\",\n  \"username\": \"john_doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"your_password\",\n  \"employeeId\": 12345,\n  \"contactNo\": \"1234567890\"\n}\n",
+					"raw": "{\n  \"fullname\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"your_password\",\n  \"employeeId\": 12345,\n  \"contactNo\": \"1234567890\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -90,7 +90,26 @@
 						"type": "text"
 					}
 				],
-				"url": "http://localhost:3522/api/booking/pending"
+				"url": {
+					"raw": "http://localhost:3522/api/booking/pending/:roomType",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3522",
+					"path": [
+						"api",
+						"booking",
+						"pending",
+						":roomType"
+					],
+					"variable": [
+						{
+							"key": "roomType",
+							"value": "1"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -156,7 +175,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"fullname\": \"Updated Fullname\",\n  \"email\": \"updated@example.com\",\n  \"password\": \"newpassword\",\n  \"employeeId\": 12345,\n  \"contactNo\": \"9876543210\"\n}\n",
+					"raw": "{\n  \"fullname\": \"John Doe kaza\",\n  \"email\": \"john@example.com\",\n  \"password\": \"admin123123\",\n  \"employeeId\": 12345,\n  \"contactNo\": \"1234567890\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -179,7 +198,7 @@
 					"variable": [
 						{
 							"key": "id",
-							"value": "65847e88b979bcf265d91742"
+							"value": "6584857f35b1c83e0b164934"
 						}
 					]
 				}
