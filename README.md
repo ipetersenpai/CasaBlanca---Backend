@@ -35,7 +35,7 @@ Ensure that you have the following installed on your machine:
 4. **Start the development server:**
 
    ```bash
-   npm run dev
+   npm start
    ```
 
    This will start the development server, and you can view your app at `http://localhost:3535`.
