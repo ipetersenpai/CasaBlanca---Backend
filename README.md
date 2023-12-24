@@ -2,7 +2,7 @@ Certainly! I've updated the README to include information about Express.js and M
 
 ---
 
-# Casa Blanca Bar & Restaurant - Admin
+# Casa Blanca Bar & Restaurant - Backend
 
 ## Prerequisites
 
